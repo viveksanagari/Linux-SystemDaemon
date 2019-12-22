@@ -1,6 +1,6 @@
-Setup a Script to Autorun using Linux Systemd
+# Setup a Script to Autorun using Linux Systemd
 
-(Step 1): Application - Write a sample application or service which is desired to run as a system daemon.
+# (Step 1): Application - Write a sample application or service which is desired to run as a system daemon.
 [For Example, A sample Python Flask application as below]
 
   #!/usr/bin/python3
@@ -18,7 +18,7 @@ Save the application/service as:
   sudo nano /usr/bin/flask_app.py
 
 
-(Step 2): Service File - Create a service for system daemon.
+# (Step 2): Service File - Create a service for system daemon.
 The service file must have .service extension under /lib/systemd/system directory
   sudo nano /lib/systemd/system/flaskapp.service
 
@@ -40,7 +40,7 @@ In [Service]: Change Application filename, path of the application file accordin
 In [Unit]: Describe about the Application/Service
 
 
-(Step 3): Enable the Service - Reload the systemctl daemon to read newly added service
+# (Step 3): Enable the Service - Reload the systemctl daemon to read newly added service
 The system service has been added to the service. Reload the systemctl daemon to read newly added service. 
 
 This daemon need to be reloaded each time after making any changes in the .service file.
@@ -51,7 +51,7 @@ Enable & Start the service to start on system boot.
   sudo systemctl start flaskapp.service
 
 
-(Step 4): Check the Status of the system daemon
+# (Step 4): Check the Status of the system daemon
   sudo systemctl status flaskapp.service
   
  To Start/Stop/Restart the service:
