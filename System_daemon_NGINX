@@ -1,0 +1,40 @@
+# Setup the NGINX service to Autorun using Linux Systemd
+
+# (Step 1&2): Service File - Create a service for system daemon for NGINX Service.
+The service file must have .service extension under /lib/systemd/system directory
+  sudo nano /lib/systemd/system/nginx.service
+
+Add the below content to '/lib/systemd/system/nginx.service'. 
+  [Unit]
+  Description=NGINX Service 
+  After=multi-user.target
+  Conflicts=getty@tty1.service
+  
+  [Service]
+  Type=forking
+  ExecStart=/usr/local/nginx/sbin/nginx
+  StandardInput=tty-force
+  
+  [Install]
+  WantedBy=multi-user.target
+
+
+# (Step 3): Enable the Service - Reload the systemctl daemon to read newly added service
+The system service has been added to the service. Reload the systemctl daemon to read newly added service. 
+
+This daemon need to be reloaded each time after making any changes in the .service file.
+  sudo systemctl daemon-reload
+
+Enable & Start the service to start on system boot.
+  sudo systemctl enable nginx.service
+  sudo systemctl start nginx.service
+
+
+# (Step 4): Check the Status of the system daemon
+  sudo systemctl status nginx.service
+  
+ To Start/Stop/Restart the service:
+   sudo systemctl start nginx.service
+   sudo systemctl stop nginx.service
+   sudo systemctl restart nginx.service
+   
